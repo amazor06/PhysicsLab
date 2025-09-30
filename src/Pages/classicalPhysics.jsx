@@ -3,12 +3,15 @@ import { motion } from "framer-motion";
 import { Button, Card, Icons } from "../components/ui.jsx";
 import ProjectileMotionSimulation from "./classicalPhysicsSims/ProjectileMotion.jsx";
 import CollisionsSimulation from "./classicalPhysicsSims/Collisions.jsx";
+import SimplePendulumSim from "./classicalPhysicsSims/Pendulum.jsx";
+
 
 export default function ClassicalPhysics({ onBack, simulations = [] }) {
   const mechanicsSimulations = simulations.filter((sim) => sim.category === "mechanics");
   const [activeSimulationId, setActiveSimulationId] = useState(null);
 
   const simulationComponents = {
+    1: SimplePendulumSim,
     4: ProjectileMotionSimulation,
     5: CollisionsSimulation,
   };

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Home from "./Home.jsx";
 import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
-import { mockSimulations, topicCategories } from "./data/simulations.js";
+import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
 
 const LoadingScreen = () => (
@@ -44,8 +44,8 @@ function App() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSimulations(mockSimulations);
-      setFeaturedSims(mockSimulations.filter((sim) => sim.is_featured).slice(0, 3));
+      setSimulations(Simulations);
+      setFeaturedSims(Simulations.filter((sim) => sim.is_featured).slice(0, 3));
       setIsLoading(false);
     }, 500);
 

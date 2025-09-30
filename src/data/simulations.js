@@ -1,4 +1,4 @@
-export const mockSimulations = [
+export const Simulations = [
   {
     id: 1,
     title: "Pendulum Motion",

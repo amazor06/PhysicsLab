@@ -294,7 +294,7 @@ export default function SimpleCollisionSim() {
                   y2={trackY}
                   stroke="#334155"
                   strokeWidth="4"
-                  strokeLinecap="round"
+                  strokeLinecap="round"s
                 />
               )}
               <circle
