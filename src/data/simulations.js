@@ -1,3 +1,5 @@
+import { desc } from "framer-motion/client";
+
 export const Simulations = [
   {
     id: 1,
@@ -27,6 +29,7 @@ export const Simulations = [
     category: "mechanics",
     is_featured: false,
   },
+
   {
     id: 5,
     title: "Elastic Collision Lab",
@@ -34,6 +37,17 @@ export const Simulations = [
     category: "mechanics",
     is_featured: false,
   },
+
+  {
+    id: 6, 
+    title: "Flow Rate Simulator", 
+    description: "Visualize how pipe width and fluid velocity affect flow rate",
+    category: "fluids",
+    is_featured: false,
+  }
+
+  /* Add more simulations as needed */
+
 ];
 
 export const topicCategories = [
@@ -46,6 +60,15 @@ export const topicCategories = [
     color: "from-blue-500 to-cyan-500",
   },
   
+  { 
+    id: "fluids",
+    title: "Fluid Dynamics",
+    page: "Fluids",
+    description: "Oscillations, interference, and wave propagation",
+    icon: "Droplet",
+    color: "from-blue-600 to-white-500",
+  }, 
+
   {
     id: "waves",
     title: "Wave Physics",

@@ -2,7 +2,12 @@ import "./App.css";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Home from "./Home.jsx";
+
+// Pages for each topic/category of simulations
 import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
+
+import FluidDynamics from "./Pages/fluidDynamics.jsx";
+
 import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
 
@@ -73,6 +78,10 @@ function App() {
 
   if (currentPage === "Classical") {
     return <ClassicalPhysics onBack={() => handleNavigation("home")} simulations={simulations} />;
+  }
+
+  if(currentPage == "Fluids"){
+    return <FluidDynamics onBack={() => handleNavigation("home")} simulations={simulations} />;
   }
 
   return <NotFoundPage onBack={() => handleNavigation("home")} />;
