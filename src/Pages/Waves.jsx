@@ -2,22 +2,21 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, Card, Icons } from "../components/ui.jsx";
 
-// Fluid Simulations
-import FlowRateSim from "./fluidDynamicsSims/flowRate.jsx"; // adjust path as needed
-import BuoyancySim from "./fluidDynamicsSims/Buoyancy.jsx"; // New buoyancy sim
 
-export default function FluidDynamics({ onBack, simulations = [] }) {
-  // Filter only fluid simulations
-  const fluidSimulations = simulations.filter((sim) =>
-    sim.category === "fluids" || sim.category === "fluid"
+// Wave Simulations
+import WaveStringSim from "./WaveSims.jsx/waveString.jsx";
+
+export default function Waves({ onBack, simulations = [] }) {
+  // Filter only wave simulations
+  const waveSimulations = simulations.filter(
+    (sim) => sim.category === "waves" || sim.category === "wave"
   );
   const [activeSimulationId, setActiveSimulationId] = useState(null);
 
   // Map sim IDs to components
   const simulationComponents = {
-    6: FlowRateSim, // Flow Rate simulation
-    7: BuoyancySim, // Buoyancy simulation
-    // Add more fluid sims here as you build them
+
+    8: WaveStringSim
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;
@@ -33,13 +32,13 @@ export default function FluidDynamics({ onBack, simulations = [] }) {
         className="text-center mt-12 mb-8"
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-          Fluid Dynamics
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+          Wave Physics
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400">
             {" "}Sims
           </span>
         </h1>
         <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-          A collection of interactive simulations to explore fluid flow, viscosity, and flow rate.
+          Interactive simulations to explore oscillations, interference, and sound waves.
         </p>
         <Button onClick={onBack}>
           <Icons name="ArrowRight" className="mr-2 rotate-180" /> Back to Home
@@ -53,7 +52,7 @@ export default function FluidDynamics({ onBack, simulations = [] }) {
         variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
         className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {fluidSimulations.map((sim) => {
+        {waveSimulations.map((sim) => {
           const hasInteractiveView = Boolean(simulationComponents[sim.id]);
           const isActive = activeSimulationId === sim.id;
 

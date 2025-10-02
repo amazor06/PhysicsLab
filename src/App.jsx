@@ -5,8 +5,9 @@ import Home from "./Home.jsx";
 
 // Pages for each topic/category of simulations
 import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
-
 import FluidDynamics from "./Pages/fluidDynamics.jsx";
+import Waves from "./Pages/Waves.jsx";
+
 
 import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
@@ -84,7 +85,10 @@ function App() {
     return <FluidDynamics onBack={() => handleNavigation("home")} simulations={simulations} />;
   }
 
-  return <NotFoundPage onBack={() => handleNavigation("home")} />;
+  if(currentPage == "Waves"){
+  return <Waves onBack={() => handleNavigation("home")} simulations={simulations} />;
+  }
+  
 }
 
 export default App;

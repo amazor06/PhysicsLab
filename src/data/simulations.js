@@ -13,21 +13,22 @@ export const Simulations = [
     title: "Wave Interference",
     description: "Visualize constructive and destructive wave interference",
     category: "waves",
-    is_featured: true,
+    is_featured: false,
   },
+
   {
     id: 3,
     title: "Electric Field Lines",
     description: "See how electric fields behave around charged objects",
     category: "electricity",
-    is_featured: true,
+    is_featured: false,
   },
   {
     id: 4,
     title: "Projectile Motion",
-    description: "Study the path of objects under gravity",
+    description: "Study the path of objects under gravity, and be able to predict the flight of objects",
     category: "mechanics",
-    is_featured: false,
+    is_featured: true,
   },
 
   {
@@ -43,11 +44,26 @@ export const Simulations = [
     title: "Flow Rate Simulator", 
     description: "Visualize how pipe width and fluid velocity affect flow rate",
     category: "fluids",
+    is_featured: true,
+  },
+
+  {
+    id: 7, 
+    title: "Buoyancy and Density", 
+    description: "Explore how objects float or sink based on their density relative to the fluid",
+    category: "fluids",
     is_featured: false,
+  },
+
+  {
+    id: 8,  
+    title: "Waves on a String", 
+    description: "Explore the behaviour of waves on a string.", 
+    category: "waves", 
+    is_featured: false
   }
 
   /* Add more simulations as needed */
-
 ];
 
 export const topicCategories = [
@@ -56,8 +72,6 @@ export const topicCategories = [
     title: "Classical Mechanics",
     page: "Classical",
     description: "Motion, forces, energy, and momentum",
-    icon: "Gear",
-    color: "from-blue-500 to-cyan-500",
   },
   
   { 
@@ -65,8 +79,6 @@ export const topicCategories = [
     title: "Fluid Dynamics",
     page: "Fluids",
     description: "Oscillations, interference, and wave propagation",
-    icon: "Droplet",
-    color: "from-blue-600 to-white-500",
   }, 
 
   {
@@ -74,23 +86,19 @@ export const topicCategories = [
     title: "Wave Physics",
     page: "Waves",
     description: "Oscillations, interference, and wave propagation",
-    icon: "Radio",
-    color: "from-purple-600 to-pink-500",
   },
+ 
   {
-    id: "optics",
-    title: "Optics & Light",
-    page: "Optics",
-    description: "Reflection, refraction, and optical phenomena",
-    icon: "Eye",
-    color: "from-amber-400 to-orange-500",
+    id: "thermo", 
+    title: "Thermodynamics", 
+    page: "Thermodynamics",
+    description: "Heat transfer, the ideal gas law, and particle behaviour"
   },
+
   {
     id: "electricity",
     title: "Electricity & Magnetism",
     page: "Electricity",
     description: "Electric fields, circuits, and electromagnetic effects",
-    icon: "Zap",
-    color: "from-green-500 to-emerald-500",
   },
 ];

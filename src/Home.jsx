@@ -133,7 +133,6 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
             >
               {topicCategories.map((topic) => {
                 const tileClasses = [
-                  "p-4 rounded-xl shadow-lg bg-gradient-to-br",
                   topic.color,
                 ]
                   .filter(Boolean)
@@ -191,7 +190,7 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
                       <h3 className="text-xl font-semibold text-white mb-2">{sim.title}</h3>
                       <p className="text-slate-400 text-sm mb-4">{sim.description}</p>
                       <Button variant="outline" className="w-full">
-                        Try Simulation <Icons name="ArrowRight" className="ml-2" />
+                        Explore Simulation <Icons name="ArrowRight" className="ml-2" />
                       </Button>
                     </Card>
                   </motion.div>
