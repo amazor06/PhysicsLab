@@ -70,6 +70,7 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
     <div className="h-screen w-screen relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white overflow-auto font-[Inter]">
       <BackgroundAnimation />
       <div className="relative z-10 h-full">
+        {/* Hero Section */}
         <section className="h-screen flex items-center justify-center px-4">
           <div className="w-full max-w-6xl text-center">
             <motion.div
@@ -107,17 +108,27 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
               transition={{ duration: 0.5, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <Button size="lg" onClick={() => handleNavigation("simulations")}>
+              {/* Scroll-to-section button */}
+              <Button
+                size="lg"
+                onClick={() =>
+                  document.getElementById("topics")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                }
+              >
                 <Icons name="Play" className="mr-2" /> Start Exploring
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => handleNavigation("theory")}>
-                View Theory Guide
               </Button>
             </motion.div>
           </div>
         </section>
 
-        <section className="h-screen flex items-center justify-center px-4">
+        {/* Physics Topics Section */}
+        <section
+          id="topics"
+          className="h-screen flex items-center justify-center px-4"
+        >
           <div className="w-full max-w-7xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-2 flex items-center justify-center gap-3">
@@ -132,11 +143,7 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               {topicCategories.map((topic) => {
-                const tileClasses = [
-                  topic.color,
-                ]
-                  .filter(Boolean)
-                  .join(" ");
+                const tileClasses = [topic.color].filter(Boolean).join(" ");
 
                 return (
                   <motion.div
@@ -166,6 +173,7 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
           </div>
         </section>
 
+        {/* Featured Simulations */}
         {featuredSims.length > 0 && (
           <section className="h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-7xl">
@@ -200,6 +208,7 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
           </section>
         )}
 
+        {/* Stats Section */}
         <section className="h-screen flex items-center justify-center px-4 border-t border-slate-700/50">
           <div className="w-full max-w-5xl text-center">
             <motion.div

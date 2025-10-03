@@ -16,13 +16,9 @@ export const Simulations = [
     is_featured: false,
   },
 
-  {
-    id: 3,
-    title: "Electric Field Lines",
-    description: "See how electric fields behave around charged objects",
-    category: "electricity",
-    is_featured: false,
-  },
+// ADD SIM WITH ID 3
+
+
   {
     id: 4,
     title: "Projectile Motion",
@@ -90,14 +86,14 @@ export const topicCategories = [
  
   {
     id: "thermo", 
-    title: "Thermodynamics", 
+    title: "Thermodynamics (Coming Soon)", 
     page: "Thermodynamics",
     description: "Heat transfer, the ideal gas law, and particle behaviour"
   },
 
   {
     id: "electricity",
-    title: "Electricity & Magnetism",
+    title: "Electricity & Magnetism (Coming Soon)",
     page: "Electricity",
     description: "Electric fields, circuits, and electromagnetic effects",
   },
