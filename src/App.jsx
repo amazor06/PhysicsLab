@@ -8,9 +8,9 @@ import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
 import FluidDynamics from "./Pages/fluidDynamics.jsx";
 import Waves from "./Pages/Waves.jsx";
 
-
 import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
+import { pageview } from "./lib/ga";   // 👈 NEW IMPORT
 
 const LoadingScreen = () => (
   <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white text-xl">
@@ -25,7 +25,11 @@ const LoadingScreen = () => (
 
 const NotFoundPage = ({ onBack }) => (
   <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white font-[Inter]">
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-center"
+    >
       <h1 className="text-3xl font-bold mb-4">Page Not Found</h1>
       <Button onClick={onBack}>
         <Icons name="ArrowRight" className="mr-2 rotate-180" /> Back to Home
@@ -51,12 +55,19 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSimulations(Simulations);
-      setFeaturedSims(Simulations.filter((sim) => sim.is_featured).slice(0, 3));
+      setFeaturedSims(
+        Simulations.filter((sim) => sim.is_featured).slice(0, 3)
+      );
       setIsLoading(false);
     }, 500);
 
     return () => clearTimeout(timer);
   }, []);
+
+  // 👇 NEW: Track page changes in Google Analytics
+  useEffect(() => {
+    pageview("/" + currentPage.toLowerCase());
+  }, [currentPage]);
 
   const handleNavigation = (page) => {
     const resolvedPage = categoryToPage[page] || page;
@@ -78,17 +89,33 @@ function App() {
   }
 
   if (currentPage === "Classical") {
-    return <ClassicalPhysics onBack={() => handleNavigation("home")} simulations={simulations} />;
+    return (
+      <ClassicalPhysics
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
   }
 
-  if(currentPage == "Fluids"){
-    return <FluidDynamics onBack={() => handleNavigation("home")} simulations={simulations} />;
+  if (currentPage === "Fluids") {
+    return (
+      <FluidDynamics
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
   }
 
-  if(currentPage == "Waves"){
-  return <Waves onBack={() => handleNavigation("home")} simulations={simulations} />;
+  if (currentPage === "Waves") {
+    return (
+      <Waves
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
   }
-  
+
+  return <NotFoundPage onBack={() => handleNavigation("home")} />;
 }
 
 export default App;
