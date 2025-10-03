@@ -82,15 +82,18 @@ export const topicCategories = [
     title: "Wave Physics",
     page: "Waves",
     description: "Oscillations, interference, and wave propagation",
-  },
+  }
+]; 
  
-  {
+  /* {
     id: "thermo", 
     title: "Thermodynamics (Coming Soon)", 
     page: "Thermodynamics",
     description: "Heat transfer, the ideal gas law, and particle behaviour"
   },
+  */ 
 
+  /*
   {
     id: "electricity",
     title: "Electricity & Magnetism (Coming Soon)",
@@ -98,3 +101,5 @@ export const topicCategories = [
     description: "Electric fields, circuits, and electromagnetic effects",
   },
 ];
+
+*/
