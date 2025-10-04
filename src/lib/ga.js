@@ -1,9 +1,16 @@
 // src/lib/ga.js
-export function pageview(path) {
-  if (!window.gtag) return; // safety check
-  window.gtag("event", "page_view", {
-    page_title: document.title,
-    page_location: window.location.href,
-    page_path: path,
+import ReactGA from "react-ga4";
+
+// Log a pageview
+export const pageview = (url) => {
+  ReactGA.send({ hitType: "pageview", page: url });
+};
+
+// (optional) Log a custom event
+export const event = ({ action, category, label, value }) => {
+  ReactGA.event(action, {
+    event_category: category,
+    event_label: label,
+    value: value,
   });
-}
+};

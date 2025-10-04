@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Home from "./Home.jsx";
+import ReactGA from "react-ga4";
 
 // Pages for each topic/category of simulations
 import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
@@ -10,7 +11,10 @@ import Waves from "./Pages/Waves.jsx";
 
 import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
-import { pageview } from "./lib/ga";   // 👈 NEW IMPORT
+import { pageview } from "./lib/ga";   
+
+// Initialize GA once (outside component)
+ReactGA.initialize("G-6VBCEJ7FZ3"); 
 
 const LoadingScreen = () => (
   <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white text-xl">
@@ -55,16 +59,13 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSimulations(Simulations);
-      setFeaturedSims(
-        Simulations.filter((sim) => sim.is_featured).slice(0, 3)
-      );
+      setFeaturedSims(Simulations.filter((sim) => sim.is_featured).slice(0, 3));
       setIsLoading(false);
     }, 500);
-
     return () => clearTimeout(timer);
   }, []);
 
-  // 👇 NEW: Track page changes in Google Analytics
+  // Track page views
   useEffect(() => {
     pageview("/" + currentPage.toLowerCase());
   }, [currentPage]);
@@ -74,9 +75,7 @@ function App() {
     setCurrentPage(resolvedPage);
   };
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
+  if (isLoading) return <LoadingScreen />;
 
   if (currentPage === "home") {
     return (
