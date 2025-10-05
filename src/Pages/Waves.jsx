@@ -33,7 +33,7 @@ export default function Waves({ onBack, simulations = [] }) {
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
           Wave Physics
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
             {" "}Sims
           </span>
         </h1>
