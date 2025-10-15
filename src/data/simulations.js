@@ -82,8 +82,8 @@ export const topicCategories = [
     title: "Wave Physics",
     page: "Waves",
     description: "Oscillations, interference, and wave propagation",
-  }
-]; 
+  },
+ 
  
   /* {
     id: "thermo", 
@@ -93,7 +93,6 @@ export const topicCategories = [
   },
   */ 
 
-  /*
   {
     id: "electricity",
     title: "Electricity & Magnetism (Coming Soon)",
@@ -101,5 +100,3 @@ export const topicCategories = [
     description: "Electric fields, circuits, and electromagnetic effects",
   },
 ];
-
-*/

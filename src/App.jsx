@@ -8,6 +8,8 @@ import ReactGA from "react-ga4";
 import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
 import FluidDynamics from "./Pages/fluidDynamics.jsx";
 import Waves from "./Pages/Waves.jsx";
+import Electricity from "./Pages/Electricity.jsx";
+
 
 import { Simulations, topicCategories } from "./data/simulations.js";
 import { Button, Icons } from "./components/ui.jsx";
@@ -108,6 +110,15 @@ function App() {
   if (currentPage === "Waves") {
     return (
       <Waves
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
+  }
+  
+  if (currentPage === "Electricity") {
+    return (
+      <Electricity
         onBack={() => handleNavigation("home")}
         simulations={simulations}
       />
