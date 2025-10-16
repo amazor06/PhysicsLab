@@ -3,10 +3,8 @@ import { motion } from "framer-motion";
 import { Button, Card, Icons } from "../components/ui.jsx";
 
 // E&M Simulations
-// Import your E&M simulation components here when ready
-// import ElectricFieldSim from "./EMSims/electricField.jsx";
-// import MagneticFieldSim from "./EMSims/magneticField.jsx";
-// import CircuitSim from "./EMSims/circuit.jsx";
+import ElectricFieldSim from "./ElectricitySims/ElectricFieldVisualizer.jsx";
+
 
 export default function Electricity({ onBack, simulations = [] }) {
   // Filter only E&M simulations
@@ -17,11 +15,7 @@ export default function Electricity({ onBack, simulations = [] }) {
 
   // Map sim IDs to components
   const simulationComponents = {
-    // Add your simulation component mappings here
-    // Example:
-    // 9: ElectricFieldSim,
-    // 10: MagneticFieldSim,
-    // 11: CircuitSim,
+    3: ElectricFieldSim
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;
@@ -87,7 +81,7 @@ export default function Electricity({ onBack, simulations = [] }) {
                       variant="outline"
                       onClick={() => {}}
                     >
-                      Coming Soon
+
                     </Button>
                   )}
                   {hasInteractiveView && isActive && (

@@ -76,7 +76,7 @@ export default function ClassicalPhysics({ onBack, simulations = [] }) {
                       variant="outline"
                       onClick={() => {}}
                     >
-                      Coming Soon
+          
                     </Button>
                   )}
                   {hasInteractiveView && isActive && (
