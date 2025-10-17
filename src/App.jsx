@@ -9,6 +9,8 @@ import ClassicalPhysics from "./Pages/classicalPhysics.jsx";
 import FluidDynamics from "./Pages/fluidDynamics.jsx";
 import Waves from "./Pages/Waves.jsx";
 import Electricity from "./Pages/Electricity.jsx";
+import Thermodynamics from "./Pages/Thermodynamics.jsx";
+import Optics from "./Pages/Optics.jsx";
 
 
 import { Simulations, topicCategories } from "./data/simulations.js";
@@ -124,6 +126,24 @@ function App() {
       />
     );
   }
+
+  if (currentPage === "Thermodynamics") {
+    return (
+      <Thermodynamics
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
+  }
+
+  if (currentPage === "Optics") {
+    return (
+      <Optics
+        onBack={() => handleNavigation("home")}
+        simulations={simulations}
+      />
+    );
+  } 
 
   return <NotFoundPage onBack={() => handleNavigation("home")} />;
 }

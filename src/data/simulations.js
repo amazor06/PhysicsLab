@@ -63,11 +63,29 @@ export const Simulations = [
     description: "Explore the behaviour of waves on a string.", 
     category: "waves", 
     is_featured: false
-  }
+  },
 
+  {
+    id: 9,  
+    title: "Ideal Gas Law Simulator", 
+    description: "Visualize the relationships between pressure, volume, and temperature in an ideal gas.", 
+    category: "thermodynamics", 
+    is_featured: true
+  }, 
+
+  {
+    id: 10,
+    title: "Reflection and Refraction",
+    description: "Explore how light behaves at the interface between different media.",
+    category: "optics",
+    is_featured: false,
+  }
+  
   /* Add more simulations as needed */
 ];
 
+
+// CATEGORIES 
 export const topicCategories = [
   {
     id: "mechanics",
@@ -91,18 +109,25 @@ export const topicCategories = [
   },
  
  
-  /* {
+  {
     id: "thermo", 
-    title: "Thermodynamics (Coming Soon)", 
+    title: "Thermodynamics", 
     page: "Thermodynamics",
     description: "Heat transfer, the ideal gas law, and particle behaviour"
   },
-  */ 
 
   {
     id: "electricity",
     title: "Electricity & Magnetism",
     page: "Electricity",
     description: "Electric fields, circuits, and electromagnetic effects",
-  },
+  }, 
+
+  {
+    id: "optics", 
+    title: "Optics",
+    page: "Optics",
+    description: "Light behavior, lenses, and optical instruments"
+  }
+
 ];
