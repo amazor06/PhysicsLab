@@ -12,10 +12,12 @@ export default function ProjectileGame() {
   const [target, setTarget] = useState({ x: 550, y: 340 });
   const [trajectory, setTrajectory] = useState([]);
   const [stars, setStars] = useState([]);
+  const [asteroid, setAsteroid] = useState(null);
+  const [explosion, setExplosion] = useState(null);
   const rafRef = useRef();
+
   const cannonX = 40;
   const cannonY = 380;
-
   const g = 9.8;
   const pixelsPerMeter = 3;
   const width = 800;
@@ -89,21 +91,21 @@ export default function ProjectileGame() {
     ctx.fillStyle = groundGradient;
     ctx.fillRect(0, height - 70, width, 70);
 
-    // Surface details (craters/rocks)
+    // Surface details (craters/rocks) - static positions
     ctx.fillStyle = "rgba(71, 85, 105, 0.6)";
-    for (let i = 0; i < 20; i++) {
-      const x = (i * 50) % width;
-      const size = Math.random() * 15 + 5;
+    const craterPositions = [50, 120, 200, 280, 350, 430, 510, 590, 670, 740];
+    craterPositions.forEach((x, i) => {
+      const size = 10 + (i % 3) * 3;
       ctx.beginPath();
       ctx.ellipse(x, height - 35, size, size * 0.5, 0, 0, 2 * Math.PI);
       ctx.fill();
-    }
+    });
 
-    // Glowing energy crystals on surface
+    // Glowing energy crystals on surface - static positions
     ctx.shadowBlur = 15;
     ctx.shadowColor = "#3b82f6";
-    for (let i = 0; i < 10; i++) {
-      const x = Math.random() * width;
+    const crystalPositions = [100, 250, 380, 520, 650, 720];
+    crystalPositions.forEach(x => {
       ctx.beginPath();
       ctx.moveTo(x, height - 70);
       ctx.lineTo(x - 5, height - 50);
@@ -112,7 +114,7 @@ export default function ProjectileGame() {
       ctx.closePath();
       ctx.fillStyle = "rgba(59, 130, 246, 0.6)";
       ctx.fill();
-    }
+    });
     ctx.shadowBlur = 0;
 
     // Futuristic cannon platform with glow
@@ -233,98 +235,218 @@ export default function ProjectileGame() {
       ctx.setLineDash([]);
     }
 
-    // Projectile (energy ball)
-    if (launched) {
-      const vx = velocity * Math.cos(rad);
-      const vy = velocity * Math.sin(rad);
-      const x = cannonX + vx * pixelsPerMeter * time;
-      const y = cannonY - (vy * pixelsPerMeter * time - 0.5 * g * pixelsPerMeter * time * time);
+    // Draw asteroid projectile
+    if (asteroid) {
+      const { x, y, rotation } = asteroid;
 
-      // Energy trail
+      // Asteroid trail/glow
       ctx.shadowBlur = 25;
-      ctx.shadowColor = "#3b82f6";
-      
-      // Outer glow
+      ctx.shadowColor = "#fbbf24";
       ctx.beginPath();
-      ctx.arc(x, y, 12, 0, 2 * Math.PI);
-      ctx.fillStyle = "rgba(59, 130, 246, 0.3)";
-      ctx.fill();
-      
-      // Core
-      ctx.beginPath();
-      ctx.arc(x, y, 8, 0, 2 * Math.PI);
-      const coreGradient = ctx.createRadialGradient(x, y, 0, x, y, 8);
-      coreGradient.addColorStop(0, "#93c5fd");
-      coreGradient.addColorStop(1, "#3b82f6");
-      ctx.fillStyle = coreGradient;
+      ctx.arc(x, y, 16, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(251, 191, 36, 0.2)";
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Check collision with target
-      const dx = x - target.x;
-      const dy = y - target.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      // Draw asteroid
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
       
-      if (dist < 20) {
-        setScore(prev => prev + 1);
-        setMessage("🎯 Direct hit! Target relocated!");
-        cancelAnimationFrame(rafRef.current);
-        setLaunched(false);
-        setTrajectory([]);
-        setTimeout(() => {
-          resetTarget();
-          setMessage("Adjust angle and velocity, then launch!");
-        }, 1500);
-        return;
+      // Asteroid gradient
+      const rockGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 12);
+      rockGradient.addColorStop(0, "#a8a29e");
+      rockGradient.addColorStop(0.5, "#78716c");
+      rockGradient.addColorStop(1, "#44403c");
+      ctx.fillStyle = rockGradient;
+      
+      // Irregular asteroid shape
+      ctx.beginPath();
+      ctx.moveTo(0, -12);
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const r = 10 + Math.random() * 3;
+        ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
       }
+      ctx.closePath();
+      ctx.fill();
+      
+      // Asteroid highlights
+      ctx.strokeStyle = "rgba(168, 162, 158, 0.5)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      
+      // Craters on asteroid
+      ctx.fillStyle = "rgba(68, 64, 60, 0.6)";
+      ctx.beginPath();
+      ctx.arc(-3, -2, 2, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(4, 3, 1.5, 0, 2 * Math.PI);
+      ctx.fill();
+      
+      ctx.restore();
 
-      // Check if projectile hit ground or went off screen
-      if (y >= height - 70 || x > width || x < 0) {
-        setMessage("❌ Missed! Recalibrate and try again.");
-        cancelAnimationFrame(rafRef.current);
-        setLaunched(false);
-        setTrajectory([]);
+      // Shadow below asteroid
+      ctx.beginPath();
+      ctx.ellipse(x, height - 68, 10, 3, 0, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+      ctx.fill();
+    }
+
+    // Draw explosion effect
+    if (explosion) {
+      const { x, y, frame } = explosion;
+      const maxFrames = 30;
+      const progress = frame / maxFrames;
+      
+      // Multiple expanding rings
+      for (let i = 0; i < 3; i++) {
+        const ringProgress = Math.max(0, progress - i * 0.15);
+        const radius = ringProgress * 60;
+        const opacity = (1 - ringProgress) * 0.8;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(x, y, radius * 0.8, 0, 2 * Math.PI);
+        ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * 0.7})`;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+      
+      // Particles
+      for (let i = 0; i < 20; i++) {
+        const angle = (i / 20) * Math.PI * 2;
+        const distance = progress * 50;
+        const px = x + Math.cos(angle) * distance;
+        const py = y + Math.sin(angle) * distance;
+        const size = (1 - progress) * 4;
+        
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = i % 2 === 0 ? "#a855f7" : "#fbbf24";
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, 2 * Math.PI);
+        ctx.fillStyle = i % 2 === 0 ? "#c084fc" : "#fcd34d";
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+      
+      // Central flash
+      if (progress < 0.3) {
+        ctx.shadowBlur = 30;
+        ctx.shadowColor = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(x, y, 15 * (1 - progress / 0.3), 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${1 - progress / 0.3})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
     }
-  }, [angle, velocity, time, launched, target, trajectory, stars]);
+  }, [angle, stars, trajectory, asteroid, target, explosion]);
 
+  // Animation Loop
   useEffect(() => {
-    if (!launched) return;
-    
+    if (!launched || !asteroid) return;
+
     const animate = () => {
-      setTime(t => {
+      setTime((t) => {
         const newTime = t + 0.025;
         const rad = (angle * Math.PI) / 180;
         const vx = velocity * Math.cos(rad);
         const vy = velocity * Math.sin(rad);
+
         const x = cannonX + vx * pixelsPerMeter * newTime;
         const y = cannonY - (vy * pixelsPerMeter * newTime - 0.5 * g * pixelsPerMeter * newTime * newTime);
-        
-        setTrajectory(prev => [...prev, { x, y }]);
+
+        const newAsteroid = {
+          x,
+          y,
+          rotation: asteroid.rotation + 0.15,
+        };
+        setAsteroid(newAsteroid);
+        setTrajectory((prev) => [...prev, { x, y }]);
+
+        // Collision check
+        const dx = x - target.x;
+        const dy = y - target.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 20) {
+          setScore((prev) => prev + 1);
+          setMessage("💥 Direct hit! Target destroyed!");
+          
+          // Start explosion animation
+          setExplosion({ x: target.x, y: target.y, frame: 0 });
+          
+          cancelAnimationFrame(rafRef.current);
+          setLaunched(false);
+          setTrajectory([]);
+          setAsteroid(null);
+          
+          // Animate explosion then reset
+          let explosionFrame = 0;
+          const explosionInterval = setInterval(() => {
+            explosionFrame++;
+            setExplosion({ x: target.x, y: target.y, frame: explosionFrame });
+            
+            if (explosionFrame >= 30) {
+              clearInterval(explosionInterval);
+              setExplosion(null);
+              resetTarget();
+              setMessage("Adjust angle and velocity, then launch!");
+            }
+          }, 33); // ~30fps for explosion
+          
+          return t;
+        }
+
+        // Ground or off screen
+        if (y >= height - 70 || x > width || x < 0) {
+          setMessage("❌ Missed! Recalibrate and try again.");
+          cancelAnimationFrame(rafRef.current);
+          setLaunched(false);
+          setTrajectory([]);
+          setAsteroid(null);
+          // Don't reset target position on miss
+          return t;
+        }
+
         return newTime;
       });
       rafRef.current = requestAnimationFrame(animate);
     };
-    
+
     rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [launched, angle, velocity]);
+  }, [launched, angle, velocity, asteroid, target]);
 
   const handleLaunch = () => {
     if (launched) return;
-    setMessage("Energy projectile launched...");
-    setTime(0);
+    const rad = (angle * Math.PI) / 180;
+    const vx = velocity * Math.cos(rad);
+    const vy = velocity * Math.sin(rad);
+    const startAsteroid = { x: cannonX, y: cannonY, rotation: 0, vx, vy };
+    setAsteroid(startAsteroid);
     setTrajectory([]);
+    setTime(0);
     setLaunched(true);
+    setMessage("🚀 Asteroid launched!");
   };
 
   const handleReset = () => {
     setLaunched(false);
-    setTime(0);
+    setAsteroid(null);
     setTrajectory([]);
-    setMessage("Adjust angle and velocity, then launch!");
+    setExplosion(null);
     setScore(0);
-    resetTarget();
+    setTime(0);
+    setMessage("Adjust angle and velocity, then launch!");
+    resetTarget(); // Only reset target when user explicitly hits Reset button
   };
 
   return (
