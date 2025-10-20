@@ -11,6 +11,7 @@ import Waves from "./Pages/Waves.jsx";
 import Electricity from "./Pages/Electricity.jsx";
 import Thermodynamics from "./Pages/Thermodynamics.jsx";
 import Optics from "./Pages/Optics.jsx";
+import Games from "./Pages/Games.jsx";
 
 
 import { Simulations, topicCategories } from "./data/simulations.js";

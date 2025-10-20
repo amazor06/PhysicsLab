@@ -128,6 +128,6 @@ export const topicCategories = [
     title: "Optics",
     page: "Optics",
     description: "Light behavior, lenses, and optical instruments"
-  }
+  },
 
 ];

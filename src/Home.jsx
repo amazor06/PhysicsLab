@@ -208,6 +208,21 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
           </section>
         )}
 
+        {/* PhysicsLab Games Section */}
+        <section
+          id="topics"
+          className="h-screen flex items-center justify-center px-4"
+        >
+          <div className="w-full max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-2 flex items-center justify-center gap-3">
+                PhysicsLab Games (Coming Soon)
+              </h2>
+              <p className="text-slate-400 text-lg">Choose your area of exploration</p>
+            </div>
+          </div>
+        </section>
+
         {/* Stats Section */}
         <section className="h-screen flex items-center justify-center px-4 border-t border-slate-700/50">
           <div className="w-full max-w-5xl text-center">
