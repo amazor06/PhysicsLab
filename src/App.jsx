@@ -144,7 +144,15 @@ function App() {
         simulations={simulations}
       />
     );
-  } 
+  }
+  
+  if (currentPage === "GamesHub") {
+    return (
+      <Games
+        onBack={() => handleNavigation("home")}
+      />
+    );
+  }
 
   return <NotFoundPage onBack={() => handleNavigation("home")} />;
 }
