@@ -79,8 +79,15 @@ export const Simulations = [
     description: "Explore how light behaves at the interface between different media.",
     category: "optics",
     is_featured: false,
-  }
+  },
   
+  {
+    id: 11,
+    title: "Friction Ramp Simulator",
+    description: "Investigate the effects of friction on an object sliding down an inclined plane.",
+    category: "mechanics",
+    is_featured: false,
+  }
   /* Add more simulations as needed */
 ];
 

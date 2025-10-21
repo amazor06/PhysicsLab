@@ -4,6 +4,7 @@ import { Button, Card, Icons } from "../components/ui.jsx";
 import ProjectileMotionSimulation from "./classicalPhysicsSims/ProjectileMotion.jsx";
 import CollisionsSimulation from "./classicalPhysicsSims/Collisions.jsx";
 import SimplePendulumSim from "./classicalPhysicsSims/Pendulum.jsx";
+import FrictionRampSimulation from "./classicalPhysicsSims/Friction.jsx";
 
 
 export default function ClassicalPhysics({ onBack, simulations = [] }) {
@@ -14,6 +15,7 @@ export default function ClassicalPhysics({ onBack, simulations = [] }) {
     1: SimplePendulumSim,
     4: ProjectileMotionSimulation,
     5: CollisionsSimulation,
+    11: FrictionRampSimulation,
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

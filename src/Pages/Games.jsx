@@ -4,6 +4,7 @@ import { Card, Button, Icons } from "../components/ui.jsx";
 
 // Games
 import ProjectileGame from "./Games/ProjectileGame.jsx";
+import BalanceBeamGame from "./Games/RotationalBalance.jsx";
 
 export default function Games({ onBack }) {
   const [activeGameId, setActiveGameId] = useState(null);
@@ -14,21 +15,20 @@ export default function Games({ onBack }) {
       title: "Projectile Target Game",
       description: "Launch projectiles and hit the target!",
     },
+
     {
       id: 2,
-      title: "Refraction Challenge",
-      description: "Adjust light angles to hit the correct point.",
-    },
-    {
-      id: 3,
-      title: "Pendulum Timing Test",
-      description: "Match timing to predict pendulum motion.",
-    },
+      title: "Rotational Balance Challenge",
+      description: "Balance rotating objects using physics principles.",  
+    }
+    // Future games can be added here
+
   ];
 
   // Map each game ID to its React component
   const gameComponents = {
     1: ProjectileGame,
+    2: BalanceBeamGame, 
   };
 
   const ActiveGameComponent = activeGameId ? gameComponents[activeGameId] : null;
