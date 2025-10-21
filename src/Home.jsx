@@ -201,62 +201,77 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
           </section>
         )}
 
-{/* PhysicsLab Games Section */}
-<section id="games" className="py-24 flex flex-col items-center justify-center px-4">
-  <div className="w-full max-w-7xl text-center">
-    <div className="mb-12">
-      <h2 className="text-4xl font-bold mb-2">PhysicsLab Games</h2>
-      <p className="text-slate-400 text-lg">
-        Explore physics-based challenges and interactive learning games.
-      </p>
-    </div>
+        {/* PhysicsLab Games Section - Enhanced */}
+        <section id="games" className="min-h-screen flex flex-col items-center justify-center px-4 py-6 relative">
+          {/* Floating background elements specific to games section */}
+          <div className="absolute inset-0 z-0 overflow-hidden opacity-20">
+            <div
+              className="absolute h-80 w-80 rounded-full bg-purple-500/40 blur-3xl"
+              style={{ top: "20%", left: "15%", animation: "float1 20s ease-in-out infinite" }}
+            />
+            <div
+              className="absolute h-80 w-80 rounded-full bg-blue-500/40 blur-3xl"
+              style={{ bottom: "20%", right: "15%", animation: "float2 22s ease-in-out infinite" }}
+            />
+          </div>
 
-    {/* Mini preview grid of games */}
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
-    >
-      {[1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-        >
-          <Card>
-            <div className="flex items-start justify-between mb-4">
-              <div className="text-white text-3xl">
-                <Icons name="Gamepad2" />
-              </div>
-              <Badge variant="outline">Preview</Badge>
-            </div>
-            <h3 className="text-2xl font-semibold text-white mb-2">Physics Game {i}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              A fun physics-based challenge coming soon to PhysicsLab.
-            </p>
-            <div className="mt-4">
-              <Button variant="outline" className="w-full" disabled>
-                Coming Soon
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
-      ))}
-    </motion.div>
-
-    {/* Central Explore button */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Button size="lg" onClick={() => onNavigate("GamesHub")}>
-        <Icons name="ArrowRight" className="mr-2" /> Explore the PhysicsLab Games Hub
-      </Button>
-    </motion.div>
-  </div>
-</section>
-
+          <div className="w-full max-w-7xl text-center relative z-10">
+            {/* Header with enhanced styling */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-16"
+            >
+              
+              
+              <h2 className="text-5xl md:text-7xl font-bold mb-4">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                  PhysicsLab Games
+                </span>
+              </h2>
+              
+              <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                Master physics concepts through engaging challenges and interactive gameplay experiences.
+              </p>
+            </motion.div>
+            
+            {/* Main CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border-2 border-blue-500/30 hover:border-blue-500/50 transition-all duration-300 shadow-2xl">
+                <div className="p-12">
+                  
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Ready to Play & Learn?
+                  </h3>
+                  
+                  <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
+                    Dive into our collection of physics-based games designed to make learning fun and engaging. 
+                  </p>
+                  
+                  <Button 
+                    size="lg" 
+                    onClick={() => handleNavigation("GamesHub")}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-12 py-6 text-xl font-semibold shadow-lg transition-all duration-300"
+                  >
+                    <Icons name="Gamepad2" className="mr-3 w-6 h-6" /> 
+                    Launch Games Hub
+                    <Icons name="ArrowRight" className="ml-3 w-6 h-6" />
+                  </Button>
+                  
+                  <p className="text-slate-500 text-sm mt-6">
+                    Join thousands of students mastering physics through interactive gameplay
+                  </p>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Stats Section */}
         <section className="h-screen flex items-center justify-center px-4 border-t border-slate-700/50">
