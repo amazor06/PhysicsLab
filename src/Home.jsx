@@ -273,34 +273,52 @@ export default function Home({ simulations = [], featuredSims = [], onNavigate }
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="h-screen flex items-center justify-center px-4 border-t border-slate-700/50">
-          <div className="w-full max-w-5xl text-center">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            >
-              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                <div className="text-5xl md:text-6xl font-bold text-white mb-1">{simulations.length}</div>
-                <div className="text-slate-400">Simulations</div>
-              </motion.div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                <div className="text-5xl md:text-6xl font-bold text-white mb-1">6</div>
-                <div className="text-slate-400">Topics</div>
-              </motion.div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                <div className="text-5xl md:text-6xl font-bold text-white mb-1">∞</div>
-                <div className="text-slate-400">Possibilities</div>
-              </motion.div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                <div className="text-5xl md:text-6xl font-bold text-white mb-1">100%</div>
-                <div className="text-slate-400">Interactive</div>
-              </motion.div>
+      {/* Stats Section */}
+      <section className="h-screen flex items-center justify-center px-4 border-t border-slate-700/50">
+        <div className="w-full max-w-6xl text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+            className="grid grid-cols-2 md:grid-cols-5 gap-8"
+          >
+            {/* Simulations */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="text-5xl md:text-6xl font-bold text-white mb-1">
+                {simulations.length}
+              </div>
+              <div className="text-slate-400">Simulations</div>
             </motion.div>
-          </div>
-        </section>
+
+            {/* Topics */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="text-5xl md:text-6xl font-bold text-white mb-1">6</div>
+              <div className="text-slate-400">Topics</div>
+            </motion.div>
+
+            {/* Games */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="text-5xl md:text-6xl font-bold text-white mb-1">
+                {/* Replace 3 with your actual number of games */}
+                2
+              </div>
+              <div className="text-slate-400">Games</div>
+            </motion.div>
+
+            {/* Possibilities */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="text-5xl md:text-6xl font-bold text-white mb-1">∞</div>
+              <div className="text-slate-400">Possibilities</div>
+            </motion.div>
+
+            {/* Interactive */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="text-5xl md:text-6xl font-bold text-white mb-1">100%</div>
+              <div className="text-slate-400">Interactive</div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
       </div>
     </div>
   );
