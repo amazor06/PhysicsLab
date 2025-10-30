@@ -5,6 +5,7 @@ import { Card, Button, Icons } from "../components/ui.jsx";
 // Games
 import ProjectileGame from "./Games/ProjectileGame.jsx";
 import BalanceBeamGame from "./Games/RotationalBalance.jsx";
+import PlinkoGame from "./Games/Plinko.jsx";
 
 export default function Games({ onBack }) {
   const [activeGameId, setActiveGameId] = useState(null);
@@ -20,15 +21,21 @@ export default function Games({ onBack }) {
       id: 2,
       title: "Rotational Balance Challenge",
       description: "Balance rotating objects using physics principles.",  
+    },
+
+    {
+      id: 3, 
+      title: "Plinko Game",
+      description: "Drop balls through a pegboard and see where they land.",
     }
     // Future games can be added here
-
   ];
 
   // Map each game ID to its React component
   const gameComponents = {
     1: ProjectileGame,
     2: BalanceBeamGame, 
+    3: PlinkoGame
   };
 
   const ActiveGameComponent = activeGameId ? gameComponents[activeGameId] : null;
