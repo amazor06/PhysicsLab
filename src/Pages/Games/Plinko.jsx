@@ -19,12 +19,12 @@ export default function PlinkoGame() {
         </motion.div>
 
         <h1 className="text-3xl font-semibold text-white mb-2">
-          Friction Ramp Simulator
+          Plinko Game Simulator
         </h1>
         <p className="text-slate-400 mb-6">
           This interactive simulation is currently in development.
           <br />
-          Check back soon to explore how friction affects motion on an incline!
+          Check back soon to explore the statistics behind the plinko game!
         </p>
 
         <motion.div
