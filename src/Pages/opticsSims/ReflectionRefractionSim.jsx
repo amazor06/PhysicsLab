@@ -235,18 +235,6 @@ export default function ReflectionRefractionSim() {
               onChange={setN2}
               disabled={isRunning}
             />
-
-            <div className="grid grid-cols-3 gap-2">
-              <Button onClick={start} disabled={isRunning} className="col-span-2">
-                Start
-              </Button>
-              <Button variant="outline" onClick={reset}>
-                Reset
-              </Button>
-              <Button onClick={pause} className="col-span-3">
-                Pause
-              </Button>
-            </div>
           </motion.div>
         </div>
 
