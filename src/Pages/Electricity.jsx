@@ -4,7 +4,7 @@ import { Button, Card, Icons } from "../components/ui.jsx";
 
 // E&M Simulations
 import ElectricFieldSim from "./ElectricitySims/ElectricFieldVisualizer.jsx";
-
+import CircuitBuilderSimulation from "./ElectricitySims/CircuitBuilder.jsx";
 
 export default function Electricity({ onBack, simulations = [] }) {
   // Filter only E&M simulations
@@ -15,7 +15,8 @@ export default function Electricity({ onBack, simulations = [] }) {
 
   // Map sim IDs to components
   const simulationComponents = {
-    3: ElectricFieldSim
+    3: ElectricFieldSim, 
+    18: CircuitBuilderSimulation,
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

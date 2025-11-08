@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Hourglass } from "lucide-react";
 
-export default function Simulation() {
+export default function FrictionRampSimulation() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
       <motion.div
@@ -19,12 +19,12 @@ export default function Simulation() {
         </motion.div>
 
         <h1 className="text-3xl font-semibold text-white mb-2">
-          Pending Simulation
+          Double Slit Simulator
         </h1>
         <p className="text-slate-400 mb-6">
           This interactive simulation is currently in development.
           <br />
-          Check back soon!
+          Check back soon to explore the double slit experiment!
         </p>
 
         <motion.div

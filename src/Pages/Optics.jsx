@@ -4,6 +4,7 @@ import { Button, Card, Icons } from "../components/ui.jsx";
 
 // Optics Simulations
 import ReflectionRefractionSim from "./opticsSims/ReflectionRefractionSim.jsx";
+import DoubleSlit from "./opticsSims/DoubleSlit.jsx";
 
 export default function Optics({ onBack, simulations = [] }) {
   // Filter only optics simulations
@@ -15,6 +16,7 @@ export default function Optics({ onBack, simulations = [] }) {
   // Map sim IDs to components
   const simulationComponents = {
     10: ReflectionRefractionSim,
+    12: DoubleSlit,
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

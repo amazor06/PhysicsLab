@@ -5,6 +5,8 @@ import ProjectileMotionSimulation from "./classicalPhysicsSims/ProjectileMotion.
 import CollisionsSimulation from "./classicalPhysicsSims/Collisions.jsx";
 import SimplePendulumSim from "./classicalPhysicsSims/Pendulum.jsx";
 import FrictionRampSimulation from "./classicalPhysicsSims/Friction.jsx";
+import CentripitalForceSimulation from "./classicalPhysicsSims/Centripital.jsx";
+import FreefallSimulation from "./classicalPhysicsSims/Freefall.jsx";
 
 
 export default function ClassicalPhysics({ onBack, simulations = [] }) {
@@ -16,6 +18,8 @@ export default function ClassicalPhysics({ onBack, simulations = [] }) {
     4: ProjectileMotionSimulation,
     5: CollisionsSimulation,
     11: FrictionRampSimulation,
+    13: CentripitalForceSimulation,
+    14: FreefallSimulation, 
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

@@ -4,6 +4,8 @@ import { Button, Card, Icons } from "../components/ui.jsx";
 
 // Thermodynamics Simulations
 import GasLawSim from "./ThermoSims/GasLawSim.jsx";
+import ExpansionSimulation from "./ThermoSims/Expansion.jsx";
+import PhaseChangeSimulation from "./ThermoSims/PhaseChange.jsx";
 
 export default function Thermodynamics({ onBack, simulations = [] }) {
   // Filter only thermodynamics simulations
@@ -16,6 +18,8 @@ export default function Thermodynamics({ onBack, simulations = [] }) {
   // Map sim IDs to components
   const simulationComponents = {
     9: GasLawSim,
+    16: ExpansionSimulation,
+    17: PhaseChangeSimulation
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

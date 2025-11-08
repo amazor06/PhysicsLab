@@ -87,7 +87,64 @@ export const Simulations = [
     description: "Investigate the effects of friction on an object sliding down an inclined plane.",
     category: "mechanics",
     is_featured: false,
+  },
+
+  {
+    id: 12,
+    title: "Double Slit Experiment",
+    description: "Simulate the interference pattern produced by a double slit setup.",
+    category: "optics",
+    is_featured: true,
+  }, 
+
+  {
+    id: 13,
+    title: "Centripital Force Simulator",
+    description: "Explore the forces acting on an object in circular motion.",
+    category: "mechanics",
+    is_featured: false,
+  }, 
+
+  {
+    id: 14,
+    title: "Freefall with Air Resistance",
+    description: "Model the motion of objects in freefall considering air resistance.",
+    category: "mechanics",
+    is_featured: false,
+  }, 
+
+  {
+    id: 15,
+    title: "Pascal's Principle Simulator",
+    description: "Visualize how pressure applied to a confined fluid is transmitted undiminished throughout the fluid.",
+    category: "fluids",
+    is_featured: false,
+  }, 
+
+  {
+    id: 16,
+    title: "Thermal Expansion Simulator",
+    description: "Explore how different materials expand when heated.",
+    category: "thermodynamics",
+    is_featured: false,
+  },
+
+  {
+    id: 17,
+    title: "Phase Change Simulator",
+    description: "Visualize the phase changes of a substance as heat is added or removed.",
+    category: "thermodynamics",
+    is_featured: false,
+  }, 
+
+  {
+    id: 18,
+    title: "Circuit Builder",
+    description: "Construct and analyze simple electrical circuits with resistors, capacitors, and power sources.",
+    category: "electricity",
+    is_featured: false,
   }
+
   /* Add more simulations as needed */
 ];
 

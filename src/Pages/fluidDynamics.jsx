@@ -5,6 +5,8 @@ import { Button, Card, Icons } from "../components/ui.jsx";
 // Fluid Simulations
 import FlowRateSim from "./fluidDynamicsSims/flowRate.jsx"; // adjust path as needed
 import BuoyancySim from "./fluidDynamicsSims/Buoyancy.jsx"; // New buoyancy sim
+import PascalSimulation from "./fluidDynamicsSims/Pascal.jsx"; // Pascal's Principle sim
+
 
 export default function FluidDynamics({ onBack, simulations = [] }) {
   // Filter only fluid simulations
@@ -17,7 +19,7 @@ export default function FluidDynamics({ onBack, simulations = [] }) {
   const simulationComponents = {
     6: FlowRateSim, // Flow Rate simulation
     7: BuoyancySim, // Buoyancy simulation
-    // Add more fluid sims here as you build them
+    15: PascalSimulation, // Pascal's Principle simulation
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;
