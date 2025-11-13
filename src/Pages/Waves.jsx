@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, Card, Icons } from "../components/ui.jsx";
 
-
 // Wave Simulations
 import WaveStringSim from "./WaveSims.jsx/waveString.jsx";
+import WaveInterferenceSimulation from "./WaveSims.jsx/Interference.jsx";
 
 export default function Waves({ onBack, simulations = [] }) {
   // Filter only wave simulations
@@ -15,8 +15,8 @@ export default function Waves({ onBack, simulations = [] }) {
 
   // Map sim IDs to components
   const simulationComponents = {
-
-    8: WaveStringSim
+    8: WaveStringSim, 
+    19: WaveInterferenceSimulation,
   };
 
   const ActiveSimulationComponent = simulationComponents[activeSimulationId] || null;

@@ -143,6 +143,14 @@ export const Simulations = [
     description: "Construct and analyze simple electrical circuits with resistors, capacitors, and power sources.",
     category: "electricity",
     is_featured: false,
+  }, 
+
+  {
+    id: 19,
+    title: "Wave Interference",
+    description: "Visualize constructive and destructive wave interference",
+    category: "waves",
+    is_featured: false,
   }
 
   /* Add more simulations as needed */
